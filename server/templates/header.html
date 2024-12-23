@@ -1,0 +1,103 @@
+<nav class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 justify-between">
+        <div class="flex">
+          <div class="-ml-2 mr-2 flex items-center md:hidden">
+            <!-- Mobile menu button -->
+            <button type="button" id="mobile-menu-button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+              <span class="absolute -inset-0.5"></span>
+              <span class="sr-only">Open main menu</span>
+              <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
+          <div class="flex shrink-0 items-center">
+            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+          </div>
+          <div class="hidden md:ml-6 md:flex md:space-x-8">
+            <a href="/" class="desktop-menu">Home</a>
+            {% if user.is_authenticated %}
+            <a href="/teams" class="desktop-menu">Teams</a>
+            <a href="/projects" class="desktop-menu">Projects</a>
+            <a href="/calendar" class="desktop-menu">Calendar</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="flex items-center">
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+            <button type="submit" href="{% url 'logout' %}" class="relative inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Logout
+            </button>
+            {% else %}
+            <a type="button" href="{% url 'login' %}" class="relative inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Login
+            </a>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="space-y-1 pb-3 pt-2">
+        <a href="/" class="mobile-menu">Home</a>
+        <a href="/teams" class="mobile-menu">Teams</a>
+        <a href="/projects" class="mobile-menu">Projects</a>
+        <a href="/calendar" class="mobile-menu">Calendar</a>
+      </div>
+    </div>
+</nav>
+
+<script>
+  
+  const currentPath = window.location.pathname;
+
+  const desktopNavLinks = document.querySelectorAll('.desktop-menu');
+  desktopNavLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('inline-flex', 'items-center', 'border-b-2', 'border-indigo-500', 'px-1', 'pt-1', 'text-sm', 'font-medium', 'text-gray-900');
+    } else {
+      link.classList.add('inline-flex', 'items-center', 'border-b-2', 'border-transparent', 'px-1', 'pt-1', 'text-sm', 'font-medium', 'text-gray-500', 'hover:border-gray-300', 'hover:text-gray-700');
+    }
+  });
+
+  const mobileNavLinks = document.querySelectorAll('.mobile-menu');
+  mobileNavLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('block', 'border-l-4', 'border-indigo-500', 'bg-indigo-50', 'py-2', 'pl-3', 'pr-4', 'text-base', 'font-medium', 'text-indigo-700', 'sm:pl-5', 'sm:pr-6');
+    } else {
+      link.classList.add('block','border-l-4','border-transparent','py-2','pl-3','pr-4','text-base','font-medium','text-gray-500','hover:border-gray-300','hover:bg-gray-50','hover:text-gray-700','sm:pl-5','sm:pr-6');
+    }
+  });
+
+  // Select button and menu elements
+  const dropdownButton = document.querySelector('#mobile-menu-button');
+  const dropdownMenu = document.querySelector('#mobile-menu');
+
+  // Toggle menu visibility
+  dropdownButton.addEventListener('click', () => {
+    if (dropdownMenu.classList.contains('hidden')) {
+      dropdownMenu.classList.remove('hidden');
+      dropdownButton.setAttribute('aria-expanded', 'true');
+    } else {
+      dropdownButton.setAttribute('aria-expanded', 'false');
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+
+  // Close the menu on outside click
+  document.addEventListener('click', (event) => {
+    if (
+      !dropdownButton.contains(event.target) &&
+      !dropdownMenu.contains(event.target)
+    ) {
+      dropdownButton.setAttribute('aria-expanded', 'false');
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+  
+</script>

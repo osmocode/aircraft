@@ -1,0 +1,9 @@
+
+# Python venv
+server/.env
+
+# Django pychache
+server/**/__pycache__
+server/static
+server/schema.yml
+server/**/migrations
