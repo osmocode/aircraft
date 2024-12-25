@@ -42,6 +42,7 @@ REQUIRED_APPS = [
 ]
 
 PROJECT_APPS = [
+    'apps.factory',
     'apps.production',
     'apps.users',
 ]

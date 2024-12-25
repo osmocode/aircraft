@@ -1,0 +1,59 @@
+{% extends "factory/factory.html" %}
+{% block page_content %}
+
+
+<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between space-x-4">
+        <h2 class="text-lg font-medium text-gray-900">Model of aircraft you can create</h2>
+    </div>
+    <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+        {% for model in model_factory %}
+            <div class="group relative">
+                <div class="relative">
+                <img src="https://cdn.baykartech.com/media/upload/userFormUpload/HfKd71PR8Fqln30Qu1VSVY7ujAvC9VgL.png" class="aspect-[4/3] w-full rounded-lg bg-gray-100 object-cover">
+                <div class="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100" aria-hidden="true">
+                    <div class="w-full rounded-md bg-white/75 px-4 py-2 text-center text-sm font-medium text-gray-900 backdrop-blur backdrop-filter">Create Models</div>
+                </div>
+                </div>
+                <div class="mt-4 flex items-center justify-between space-x-8 text-base font-medium text-gray-900">
+                    <h3>
+                        <a href="{% url 'factory:model-detail' pk=model.name %}">
+                        <span aria-hidden="true" class="absolute inset-0"></span>
+                        {{ model.name }}
+                        </a>
+                    </h3>
+                </div>
+                <p class="mt-1 text-sm text-gray-500">{{ model.desc }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between space-x-4">
+        <h2 class="text-lg font-medium text-gray-900">Part of aircraft you can create</h2>
+    </div>
+    <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+        {% for part in part_factory %}
+            <div class="group relative">
+                <div class="relative">
+                <img src="https://cdn.baykartech.com/media/upload/userFormUpload/FcLUmeJZLYReOgicr8GyC32dEQauCGcO.jpeg" alt="Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background." class="aspect-[4/3] w-full rounded-lg bg-gray-100 object-cover">
+                <div class="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100" aria-hidden="true">
+                    <div class="w-full rounded-md bg-white/75 px-4 py-2 text-center text-sm font-medium text-gray-900 backdrop-blur backdrop-filter">Create Part</div>
+                </div>
+                </div>
+                <div class="mt-4 flex items-center justify-between space-x-8 text-base font-medium text-gray-900">
+                    <h3>
+                        <a href="{% url 'factory:part-detail' pk=part.name %}">
+                        <span aria-hidden="true" class="absolute inset-0"></span>
+                        {{ part.name }}
+                        </a>
+                    </h3>
+                </div>
+                <p class="mt-1 text-sm text-gray-500">{{ part.desc }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

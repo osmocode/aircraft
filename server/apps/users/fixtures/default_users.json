@@ -1,0 +1,36 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "password",
+            "last_login": null,
+            "first_name": "Admin",
+            "last_name": "System",
+            "email": "admin@admin.com",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "demo",
+            "password": "password",
+            "last_login": null,
+            "first_name": "Jack",
+            "last_name": "Reacher",
+            "email": "jack@reacher.com",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

@@ -17,16 +17,25 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-from .views import home, teams, RegisterView
+from .views import home, RegisterView
 
 urlpatterns = [
+    # Home
     path('', home, name='home'),
-    path('teams', teams, name='teams'),
-    path('accounts/', include('django.contrib.auth.urls')),
+
+    # Authentication
     re_path(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'registration/login.html'}, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
+
+    # Apps
+    path('', include('apps.users.urls', namespace="users")),
+    path('production/', include('apps.production.urls', namespace="production")),
+    path('factory/', include('apps.factory.urls', namespace="factory")),
+
+    # Built in urls
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/v1/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

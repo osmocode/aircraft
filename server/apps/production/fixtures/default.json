@@ -1,0 +1,66 @@
+[
+    {
+        "model": "production.AircraftModel",
+        "pk": 1,
+        "fields": {
+            "name": "TB2",
+            "desc": "Turkish Aerospace Industries (TAI) TB2 is a medium-altitude, long-endurance aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftModel",
+        "pk": 2,
+        "fields": {
+            "name": "TB3",
+            "desc": "Turkish Aerospace Industries (TAI) TB3 is a medium-altitude, long-endurance aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftModel",
+        "pk": 3,
+        "fields": {
+            "name": "AKINCI",
+            "desc": "Turkish Aerospace Industries (TAI) AKINCI is a medium-altitude, long-endurance aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftModel",
+        "pk": 4,
+        "fields": {
+            "name": "KIZILELMA",
+            "desc": "Turkish Aerospace Industries (TAI) KIZILELMA is a medium-altitude, long-endurance aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftPart",
+        "pk": 1,
+        "fields": {
+            "name": "Wing",
+            "desc": "Wing of the aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftPart",
+        "pk": 2,
+        "fields": {
+            "name": "Fuselage",
+            "desc": "Fuselage of the aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftPart",
+        "pk": 3,
+        "fields": {
+            "name": "Tail",
+            "desc": "Tail of the aircraft"
+        }
+    },
+    {
+        "model": "production.AircraftPart",
+        "pk": 4,
+        "fields": {
+            "name": "Avionics",
+            "desc": "Avionics of the aircraft"
+        }
+    }
+]

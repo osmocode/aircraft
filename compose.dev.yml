@@ -35,6 +35,10 @@ services:
     container_name: django
     command: sh -c "python3 manage.py makemigrations &&
       python3 manage.py migrate &&
+      python3 manage.py loaddata default.json &&
+      python3 manage.py initusers &&
+      python3 manage.py initgroups &&
+      python3 manage.py collectstatic --noinput &&
       python3 manage.py spectacular --color --file schema.yml &&
       python3 manage.py runserver 0.0.0.0:8000"
     networks:

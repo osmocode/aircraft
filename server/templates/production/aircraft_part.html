@@ -1,0 +1,42 @@
+{% extends "production/aircraft.html" %}
+{% block page_breadcrumb %}
+<li>
+    <div class="flex items-center">
+        <svg class="size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+        <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+        </svg>
+        <a href="{% url 'production:part' %}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Parts</a>
+    </div>
+</li>
+{% endblock %}
+{% block page_title %}Aircraft parts{% endblock %}
+{% block page_actions %}
+<a href="{% url 'production:part-create' %}" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">New part</a>
+{% endblock %}
+{% block page_content %}
+<table id="part-table" class="display" style="width:100%">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+    {% for part in part_list %}
+      <tr>
+        <td>{{ part.name }}</td>
+        <td>{{ part.desc }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+      <tr>
+          <th>Name</th>
+          <th>Description</th>
+      </tr>
+  </tfoot>
+</table>
+<script>
+  new DataTable('#part-table');
+</script>
+{% endblock %}

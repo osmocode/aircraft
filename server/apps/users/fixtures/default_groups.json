@@ -1,0 +1,67 @@
+[
+    {
+        "model": "auth.group",
+        "pk": 1,
+        "fields": {
+            "name": "Wing Team"
+        },
+        "permissions": [
+            "can_add_Wing",
+            "can_change_Wing",
+            "can_delete_Wing",
+            "can_view_Wing"
+        ]
+    },
+    {
+        "model": "auth.group",
+        "pk": 2,
+        "fields": {
+            "name": "Fuselage Team"
+        },
+        "permissions": [
+            "can_add_Fuselage",
+            "can_change_Fuselage",
+            "can_delete_Fuselage",
+            "can_view_Fuselage"
+        ]
+    },
+    {
+        "model": "auth.group",
+        "pk": 3,
+        "fields": {
+            "name": "Tail Team"
+        },
+        "permissions": [
+            "can_add_Tail",
+            "can_change_Tail",
+            "can_delete_Tail",
+            "can_view_Tail"
+        ]
+    },
+    {
+        "model": "auth.group",
+        "pk": 4,
+        "fields": {
+            "name": "Avionics Team"
+        },
+        "permissions": [
+            "can_add_Avionics",
+            "can_change_Avionics",
+            "can_delete_Avionics",
+            "can_view_Avionics"
+        ]
+    },
+    {
+        "model": "auth.group",
+        "pk": 5,
+        "fields": {
+            "name": "Assembly Team"
+        },
+        "permissions": [
+            "can_view_Wing",
+            "can_view_Fuselage",
+            "can_view_Tail",
+            "can_view_Avionics"
+        ]
+    }
+]

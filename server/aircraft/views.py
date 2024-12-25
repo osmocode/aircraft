@@ -9,10 +9,6 @@ from django.views.generic import CreateView
 def home(request):
     return render(request, "home.html", {})
 
-@login_required
-def teams(request):
-    return render(request, "home.html", {})
-
 class RegisterView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
