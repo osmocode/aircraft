@@ -6,6 +6,7 @@ app_name = 'users'
 urlpatterns = [
     path('teams/', views.TeamsView.as_view(), name='teams'),
     path('teams/<int:pk>/', views.TeamsDetailView.as_view(), name='teams-detail'),
+    path('teams/<int:pk>/members/', views.TeamsMembersView.as_view(), name='teams-members'),
 
     path('api/v1/users/', views.UserListViewSet.as_view(), name='api-user-list'),
     path('api/v1/users/<str:username>/', views.UserDetailViewSet.as_view(), name='api-user-detail'),

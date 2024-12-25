@@ -20,12 +20,46 @@
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "username": "demo",
+            "username": "jack",
             "password": "password",
             "last_login": null,
             "first_name": "Jack",
             "last_name": "Reacher",
             "email": "jack@reacher.com",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "jason",
+            "password": "password",
+            "last_login": null,
+            "first_name": "Jason",
+            "last_name": "Statham",
+            "email": "jason@statham.com",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "morgan",
+            "password": "password",
+            "last_login": null,
+            "first_name": "Morgan",
+            "last_name": "Freeman",
+            "email": "morgan@freeman.com",
             "is_superuser": false,
             "is_staff": false,
             "is_active": true,
