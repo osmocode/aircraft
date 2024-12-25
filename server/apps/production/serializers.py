@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 from . import models
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 
 class AircraftModelSerializer(serializers.ModelSerializer):
     name = serializers.SlugField(max_length=50, allow_blank=False)
@@ -11,6 +13,7 @@ class AircraftModelSerializer(serializers.ModelSerializer):
         model = models.AircraftModel
         fields = '__all__'
     
+    @extend_schema_field(OpenApiTypes.URI)
     def get_url(self, value: models.AircraftModel):
         request = self.context.get('request')
         return reverse(
@@ -28,6 +31,7 @@ class AircraftPartSerializer(serializers.ModelSerializer):
         model = models.AircraftPart
         fields = '__all__'
     
+    @extend_schema_field(OpenApiTypes.URI)
     def get_url(self, value: models.AircraftPart):
         request = self.context.get('request')
         return reverse(

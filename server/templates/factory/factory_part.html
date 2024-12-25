@@ -57,11 +57,12 @@
                     <li class="flex items-center justify-between gap-x-6 py-5">
                         <div class="min-w-0">
                             <div class="flex items-start gap-x-3">
-                                <p class="text-sm/6 font-semibold text-gray-900">{{ part.part_type }} for
-                                    {{ part.part_of }}</p>
-                                <p
-                                    class="mt-0.5 whitespace-nowrap rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                                    Available</p>
+                                <p class="text-sm/6 font-semibold text-gray-900">{{ part.part_type }} for {{ part.part_of }}</p>
+                                {% if part.is_available %}
+                                <p class="mt-0.5 whitespace-nowrap rounded-md bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Available</p>
+                                {% else %}
+                                <p class="mt-0.5 whitespace-nowrap rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Already used</p>
+                                {% endif %}
                             </div>
                             <div class="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
                                 <p class="whitespace-nowrap">Made by {{ part.made_by }}</p>

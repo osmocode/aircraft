@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from apps.production.models import AircraftModel, AircraftPart
 from apps.core.mixins import CrudViewSet
 from . import models, serializers
+from django.db import IntegrityError, transaction
 
 # Create your views here.
 class FactoryView(TemplateView):
@@ -43,6 +44,31 @@ class FactoryModelDetailView(DetailView):
         context['part_list'] = AircraftPart.objects.all()
         context['model_list'] = models.AircraftModelFactory.objects.filter(model_type=self.object).order_by('-made_at')
         return context
+
+    def post(self, request, *args, **kwargs):
+        if 'pk' in kwargs:
+            try:
+                with transaction.atomic():
+                    model_type = AircraftModel.objects.get(pk=kwargs['pk'])
+                    model = models.AircraftModelFactory.objects.create(
+                        model_type=model_type,
+                        made_by=request.user
+                    )
+                    for part_type in AircraftPart.objects.all():
+                        part: models.AircraftPartFactory = models.AircraftPartFactory.objects.filter(
+                            part_type=part_type,
+                            part_of=model_type,
+                            used_by=None
+                        ).first()
+                        if part is None:
+                            raise IntegrityError
+                        else:
+                            part.used_by = model
+                            part.save()
+            except IntegrityError:
+                # TODO more stuff
+                print('IntegrityError')
+        return self.get(request, *args, **kwargs)
 
 class FactoryModelViewSet(CrudViewSet):
     serializer_class = serializers.FactoryModelSerializer

@@ -24,7 +24,6 @@ You may have a warning with the ssl certificate, you can skip with trusting the 
 
 - ACL Gesture (everybody are admin)
 - Documentation (only codegen)
-- Create a aircraft model (atomic transaction)
 
 ## Available plugins
 

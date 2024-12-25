@@ -24,7 +24,11 @@ class AircraftPartFactory(models.Model):
     part_of = models.ForeignKey(AircraftModel, on_delete=models.CASCADE, related_name='part_of')
     made_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='part_made_by')
     made_at = models.DateTimeField(auto_now_add=True, null=False)
-    # used_for = models.ForeignKey(AircraftModelFactory, on_delete=models.CASCADE, null=True)
+    used_by = models.ForeignKey(AircraftModelFactory, on_delete=models.CASCADE, null=True, related_name='part_used_by')
+
+    @property
+    def is_available(self):
+        return self.used_by is None
 
     class Meta:
         ordering = ('made_at',)
