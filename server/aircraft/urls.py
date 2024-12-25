@@ -17,21 +17,23 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-from .views import home, RegisterView
+from .views import HomeView, RegisterView, api_root
 
 urlpatterns = [
-    # Home
-    path('', home, name='home'),
+
+    # Apps
+    path('', HomeView.as_view(), name='home'),
+    path('', include('apps.users.urls', namespace="users")),
+    path('', include('apps.production.urls', namespace="production")),
+    path('', include('apps.factory.urls', namespace="factory")),
+
+    # Rest API
+    path('api/v1/', api_root),
 
     # Authentication
     re_path(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'registration/login.html'}, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
-
-    # Apps
-    path('', include('apps.users.urls', namespace="users")),
-    path('production/', include('apps.production.urls', namespace="production")),
-    path('factory/', include('apps.factory.urls', namespace="factory")),
 
     # Built in urls
     path('admin/', admin.site.urls),

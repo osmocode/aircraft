@@ -23,11 +23,12 @@ You may have a warning with the ssl certificate, you can skip with trusting the 
 ## Missing features
 
 - ACL Gesture (everybody are admin)
-- Documentation
-- RESTful endpoint
+- Documentation (only codegen)
+- Create a aircraft model (atomic transaction)
 
 ## Available plugins
 
+- **Django REST framework** [https://localhost/api/v1/](https://localhost/api/v1/)
 - **Django Admin** [https://localhost/admin/](https://localhost/admin/)
 - **Swagger** [https://localhost/api/v1/schema/swagger-ui/](https://localhost/api/v1/schema/swagger-ui/)
 - **Redoc** [https://localhost/api/v1/schema/redoc/](https://localhost/api/v1/schema/redoc/)

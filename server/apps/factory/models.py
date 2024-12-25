@@ -10,8 +10,8 @@ User = get_user_model()
 # Create your models here.
 class AircraftModelFactory(models.Model):
     
-    model_type = models.ForeignKey(AircraftModel, on_delete=models.CASCADE)
-    made_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    model_type = models.ForeignKey(AircraftModel, on_delete=models.CASCADE, related_name='model_type')
+    made_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='model_made_by')
     made_at = models.DateTimeField(auto_now_add=True, null=False)
 
     class Meta:
@@ -20,9 +20,9 @@ class AircraftModelFactory(models.Model):
 
 class AircraftPartFactory(models.Model):
 
-    part_type = models.ForeignKey(AircraftPart, on_delete=models.CASCADE)
-    part_of = models.ForeignKey(AircraftModel, on_delete=models.CASCADE)
-    made_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    part_type = models.ForeignKey(AircraftPart, on_delete=models.CASCADE, related_name='part_type')
+    part_of = models.ForeignKey(AircraftModel, on_delete=models.CASCADE, related_name='part_of')
+    made_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='part_made_by')
     made_at = models.DateTimeField(auto_now_add=True, null=False)
     # used_for = models.ForeignKey(AircraftModelFactory, on_delete=models.CASCADE, null=True)
 
